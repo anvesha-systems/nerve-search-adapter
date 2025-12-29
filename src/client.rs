@@ -6,6 +6,9 @@ use tracing::{info, warn};
 
 use nerve_protocol::io::FrameReader;
 
+use crawler::SearchEngine;
+use std::path::Path;
+
 use crate::handler;
 use crate::state::RequestState;
 
@@ -15,6 +18,9 @@ pub fn run(socket_path: &str)-> std::io::Result<()>{
 
     let mut reader = FrameReader::new();
     let mut state = RequestState::new();
+
+    let engine = SearchEngine::new(Path::new("/Users/shreyasbk/RustroverProjects/crawler/search_index"))
+        .expect("failed to init search engine");
 
     loop{
         let frames = match reader.read_from(&mut stream){
@@ -28,7 +34,7 @@ pub fn run(socket_path: &str)-> std::io::Result<()>{
         for frame in frames{
             match MessageType::try_from(frame.header.msg_type){
                 Ok(MessageType::SearchQuery)=>{
-                    if let Some(reply) = handler::handle_search(frame, &mut state){
+                    if let Some(reply) = handler::handle_search(frame, &mut state, &engine){
                         stream.write_all(&reply)?;
                     }
                 }
