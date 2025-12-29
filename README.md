@@ -195,12 +195,3 @@ Stable for integration. Ready for real search backends.
 
 ⸻
 
-## Next Steps
-
-If you want to extend this adapter, consider:
-- Wiring your real search engine into this adapter
-- Defining a search result payload format
-- Designing the agent runtime on top
-- Planning the AI summarization layer
-
-Just tell us the next step.
