@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"path": "../../nerve-core"
+		},
+		{
+			"path": "../../nerve"
+		},
+		{
+			"path": ".."
+		},
+		{
+			"path": "../../RustroverProjects/crawler"
+		}
+	],
+	"settings": {}
+}
